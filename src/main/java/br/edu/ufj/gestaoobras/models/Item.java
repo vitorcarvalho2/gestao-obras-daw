@@ -15,43 +15,36 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "proprietario")
-public class Proprietario implements Serializable {
+@Table(name = "Itens")
+public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "codigo_prop")
+	@Column(name = "codigo_item")
 	private int codigo;
 
+	@Column(name = "descricao_item", nullable = false)
+	private String descricao;
+
+	@Column(name = "complemento_item", nullable = false)
+	private String complemento;
 	
-	@Column(name = "nome_prop", nullable = false)
-	private String nome;
+	@OneToMany
+    private List<SubItem> subItens= new ArrayList<>();
 
 	
-	@Column(name = "cpf_prop", nullable = false)
-	private String cpf;
-
-	@Column(name = "email_prop", nullable = false)
-	private String email;
-	
-	@OneToMany(mappedBy = "proprietario")
-    private List<Obra> obras= new ArrayList<>();
-
-	public Proprietario(int codigo, String nome, String cpf, String email) {
+	public Item(int codigo, String descricao,String complemento) {
+		super();
 		this.codigo = codigo;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.email = email;
+		this.descricao = descricao;
+		this.complemento = complemento;
 	}
-
-	
 }

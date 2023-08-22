@@ -40,6 +40,7 @@ public class Obra implements Serializable {
   @Column(name= "complemento_obra")
   private String complemento;
   
-  @ManyToOne
+  @ManyToOne()
   private Proprietario proprietario;
+  
 }

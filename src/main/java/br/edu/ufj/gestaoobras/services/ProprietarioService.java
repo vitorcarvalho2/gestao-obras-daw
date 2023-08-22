@@ -56,7 +56,7 @@ public class ProprietarioService {
 
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional
 	public ProprietarioDTO save(Proprietario obj) {
 		boolean cpfExists = dao.findByCpf(obj.getCpf()).stream().anyMatch(objResult -> !objResult.equals(obj));
 

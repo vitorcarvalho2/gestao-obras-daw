@@ -54,7 +54,7 @@ public class ProprietarioController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@PostMapping("/{id}")
+	@PostMapping
 	public ResponseEntity<@Valid ProprietarioDTO> incluir(@Valid @RequestBody Proprietario obj){
 		@Valid ProprietarioDTO objDTO = service.save(obj);
 		return ResponseEntity.created(null).body(objDTO);
